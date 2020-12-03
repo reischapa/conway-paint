@@ -1,9 +1,10 @@
-<html>
+<html lang="en">
   <head>
     <script src="index.js"></script>
   </head>
   <body>
-    <canvas id="canvas" width="1000" height="1000" style="border: 2px solid black"  ></canvas>
+    <img id="image"/>
+    <canvas id="canvas" width="1000" height="1000" style="border: 2px solid black; cursor: crosshair"  ></canvas>
     <div>
       <button id="button-play">
         Pause
@@ -14,6 +15,13 @@
       <button id="button-reset">
         Reset
       </button>
+      <span>Brush:</span>
+      <select id="brushType">
+        <option value="circle">Circle</option>
+        <option value="square">Square</option>
+        <option value="rightShip">Right Ship</option>
+        <option value="leftShip">Left Ship</option>
+      </select>
     </div>
   </body>
 </html>
