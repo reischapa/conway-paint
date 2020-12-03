@@ -245,10 +245,10 @@ function drawCircle(nodes, targetNodes, x, y) {
 }
 
 function drawLeftShip(nodes, targetNodes, x, y) {
-  for (const n of nodes) {
-    const xIndex = Math.floor(x / cellWidth);
-    const yIndex = Math.floor(y / cellHeight);
+  const xIndex = Math.floor(x / cellWidth);
+  const yIndex = Math.floor(y / cellHeight);
 
+  for (const n of nodes) {
     if (n.xIndex < xIndex - 1 || n.xIndex >= (xIndex + 2) || n.yIndex < yIndex - 1 || n.yIndex >= (yIndex + 2)) {
       continue;
     }
@@ -274,10 +274,10 @@ function drawLeftShip(nodes, targetNodes, x, y) {
 }
 
 function drawRightShip(nodes, targetNodes, x, y) {
-  for (const n of nodes) {
-    const xIndex = Math.floor(x / cellWidth);
-    const yIndex = Math.floor(y / cellHeight);
+  const xIndex = Math.floor(x / cellWidth);
+  const yIndex = Math.floor(y / cellHeight);
 
+  for (const n of nodes) {
     if (n.xIndex < xIndex - 1 || n.xIndex >= (xIndex + 2) || n.yIndex < yIndex - 1 || n.yIndex >= (yIndex + 2)) {
       continue;
     }
@@ -302,9 +302,18 @@ function drawRightShip(nodes, targetNodes, x, y) {
   }
 }
 
+function drawDot(nodes, targetNodes, x, y) {
+  const xIndex = Math.floor(x / cellWidth);
+  const yIndex = Math.floor(y / cellHeight);
+
+  const targetNode = nodes.find(n => n.xIndex === xIndex && n.yIndex === yIndex);
+  targetNodes.push(targetNode);
+}
+
 let selectedBrush;
 
 const brushes = {
+  dot: drawDot,
   circle: drawCircle,
   leftShip: drawLeftShip,
   rightShip: drawRightShip,
@@ -314,7 +323,7 @@ const brushes = {
 function draw(x, y) {
   let targetNodes = [];
 
-  const brush = brushes[selectedBrush] || drawCircle;
+  const brush = brushes[selectedBrush] || drawDot;
 
   brush(list.nodes, targetNodes, x, y);
 
